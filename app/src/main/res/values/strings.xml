@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Components</string>
+    <string-array name="spinner_values">
+        <item>Gramas</item>
+        <item>Kg</item>
+        <item>Arroba</item>
+        <item>Tonelada</item>
+    </string-array>
 </resources>
