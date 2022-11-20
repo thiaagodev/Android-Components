@@ -5,9 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
@@ -20,6 +18,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         buttonToast.setOnClickListener(this)
         buttonSnack.setOnClickListener(this)
+
+        loadSpinner()
+
     }
 
     override fun onClick(v: View) {
@@ -51,6 +52,15 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private fun toast(str: String) {
         Toast.makeText(this, str, Toast.LENGTH_LONG).show()
+    }
+
+    private fun loadSpinner() {
+        val spinnerDynamic = findViewById<Spinner>(R.id.spinner_dynamic)
+        val mList = listOf("Gramas", "Kg", "Arroba", "Tonelada")
+
+        val adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, mList)
+        spinnerDynamic.adapter = adapter
+
     }
 
 }
