@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".TimeActivity"
     android:padding="16dp"
-    >
+    tools:context=".TimeActivity">
 
     <Button
         android:id="@+id/button_date"
@@ -15,5 +14,43 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="DatePicker" />
+
+    <Button
+        android:id="@+id/button_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="TimePicker" />
+
+    <TimePicker
+        android:id="@+id/timepicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp" />
+
+    <!--Botões obter e atribuir Timepicker-->
+    <LinearLayout
+        android:id="@+id/linear_button_timepicker"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_get_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="Obter time" />
+
+        <Button
+            android:id="@+id/button_set_time"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Atribuir time" />
+
+    </LinearLayout>
 
 </LinearLayout>
