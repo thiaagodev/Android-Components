@@ -114,5 +114,25 @@
         android:checked="false"
         android:text="On / Off" />
 
+   <RadioGroup
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="8dp"
+       >
+
+       <RadioButton
+           android:id="@+id/radio_on"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Radio On" />
+
+       <RadioButton
+           android:id="@+id/radio_off"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Radio Off" />
+
+   </RadioGroup>
+
 
 </LinearLayout>
