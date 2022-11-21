@@ -107,4 +107,12 @@
         android:layout_height="wrap_content"
         android:checked="false" />
 
+    <CheckBox
+        android:id="@+id/check_on_off"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:text="On / Off" />
+
+
 </LinearLayout>

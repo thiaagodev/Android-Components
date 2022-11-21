@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         val buttonSetSeekBar = findViewById<Button>(R.id.button_set_seekbar)
         val buttonGetSeekBar = findViewById<Button>(R.id.button_get_seekbar)
         val switch = findViewById<SwitchCompat>(R.id.switch_on_off)
+        val checkBox = findViewById<CheckBox>(R.id.check_on_off)
 
         buttonToast.setOnClickListener(this)
         buttonSnack.setOnClickListener(this)
@@ -36,6 +37,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         seekBar.setOnSeekBarChangeListener(this)
 
         switch.setOnCheckedChangeListener(this)
+        checkBox.setOnCheckedChangeListener(this)
 
         loadSpinner()
 
@@ -102,6 +104,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
                 // switch.isChecked = true
 
                 toast("Switch ${if (isChecked) "true" else "false"}")
+            }
+
+            R.id.check_on_off -> {
+                val checkBox = findViewById<CheckBox>(R.id.check_on_off)
+                val a = checkBox.isChecked
+                toast("Checkbox ${if (isChecked) "true" else "false"}")
             }
         }
     }
