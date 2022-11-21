@@ -3,13 +3,14 @@ package com.thiaagodev.components
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.View
 import android.widget.*
+import androidx.appcompat.widget.SwitchCompat
 import com.google.android.material.snackbar.Snackbar
-import com.thiaagodev.components.R.id.spinner_static
+import com.thiaagodev.components.R
 
-class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener,
+    SeekBar.OnSeekBarChangeListener, CompoundButton.OnCheckedChangeListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -18,14 +19,23 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
         val buttonSnack = findViewById<Button>(R.id.button_snack)
         val buttonGetSpinner = findViewById<Button>(R.id.button_get_spinner)
         val buttonSetSpinner = findViewById<Button>(R.id.button_set_spinner)
-        val spinnerStatic = findViewById<Spinner>(spinner_static)
+        val spinnerStatic = findViewById<Spinner>(R.id.spinner_static)
+        val seekBar = findViewById<SeekBar>(R.id.seekbar)
+        val buttonSetSeekBar = findViewById<Button>(R.id.button_set_seekbar)
+        val buttonGetSeekBar = findViewById<Button>(R.id.button_get_seekbar)
+        val switch = findViewById<SwitchCompat>(R.id.switch_on_off)
 
         buttonToast.setOnClickListener(this)
         buttonSnack.setOnClickListener(this)
         buttonGetSpinner.setOnClickListener(this)
         buttonSetSpinner.setOnClickListener(this)
+        buttonGetSeekBar.setOnClickListener(this)
+        buttonSetSeekBar.setOnClickListener(this)
 
         spinnerStatic.onItemSelectedListener = this
+        seekBar.setOnSeekBarChangeListener(this)
+
+        switch.setOnCheckedChangeListener(this)
 
         loadSpinner()
 
@@ -57,25 +67,62 @@ class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnIt
             }
 
             R.id.button_get_spinner -> {
-                val selectedItem = findViewById<Spinner>(spinner_static).selectedItem
-                val selectedItemId = findViewById<Spinner>(spinner_static).selectedItemId
-                val selectedItemPosition = findViewById<Spinner>(spinner_static).selectedItemPosition
+                val selectedItem = findViewById<Spinner>(R.id.spinner_static).selectedItem
+                val selectedItemId = findViewById<Spinner>(R.id.spinner_static).selectedItemId
+                val selectedItemPosition =
+                    findViewById<Spinner>(R.id.spinner_static).selectedItemPosition
 
                 toast("Position: $selectedItemId: $selectedItem ")
 
             }
 
             R.id.button_set_spinner -> {
-                val spinnerStatic = findViewById<Spinner>(spinner_static)
+                val spinnerStatic = findViewById<Spinner>(R.id.spinner_static)
 
                 spinnerStatic.setSelection(2)
+            }
+
+            R.id.button_get_seekbar -> {
+                val seekBarValue = findViewById<SeekBar>(R.id.seekbar).progress
+                toast("Seekbar: $seekBarValue")
+            }
+
+            R.id.button_set_seekbar -> {
+                val seekBar = findViewById<SeekBar>(R.id.seekbar)
+                seekBar.progress = 15
             }
         }
     }
 
+    override fun onCheckedChanged(buttonView: CompoundButton, isChecked: Boolean) {
+        when (buttonView.id) {
+            R.id.switch_on_off -> {
+                val switch = findViewById<SwitchCompat>(R.id.switch_on_off)
+
+                // switch.isChecked = true
+
+                toast("Switch ${if (isChecked) "true" else "false"}")
+            }
+        }
+    }
+
+    override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
+        val textSeekBar = findViewById<TextView>(R.id.text_seekbar_value)
+
+        textSeekBar.text = "Valor seekbar: $progress"
+    }
+
+    override fun onStartTrackingTouch(seekBar: SeekBar?) {
+        toast("Track started")
+    }
+
+    override fun onStopTrackingTouch(seekBar: SeekBar?) {
+        toast("Track stoped")
+    }
+
     override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
         when (parent?.id) {
-            spinner_static -> {
+            R.id.spinner_static -> {
                 val text = parent.getItemAtPosition(position)
                 toast(text.toString())
             }
