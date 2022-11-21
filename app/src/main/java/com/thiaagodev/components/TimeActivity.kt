@@ -6,10 +6,7 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.DatePicker
-import android.widget.TimePicker
-import android.widget.Toast
+import android.widget.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -54,6 +51,10 @@ class TimeActivity : AppCompatActivity(), View.OnClickListener, DatePickerDialog
             }
 
             R.id.button_get_time -> {
+
+                val progress = findViewById<ProgressBar>(R.id.progress)
+                progress.visibility = View.GONE
+
                 val timePicker = findViewById<TimePicker>(R.id.timepicker)
                 if (Build.VERSION.SDK_INT >= 23) {
                     val hour = timePicker.hour
