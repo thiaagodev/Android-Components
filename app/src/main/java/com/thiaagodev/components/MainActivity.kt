@@ -7,17 +7,25 @@ import android.view.Gravity
 import android.view.View
 import android.widget.*
 import com.google.android.material.snackbar.Snackbar
+import com.thiaagodev.components.R.id.spinner_static
 
-class MainActivity : AppCompatActivity(), View.OnClickListener {
+class MainActivity : AppCompatActivity(), View.OnClickListener, AdapterView.OnItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val buttonToast = findViewById<Button>(R.id.button_toast)
         val buttonSnack = findViewById<Button>(R.id.button_snack)
+        val buttonGetSpinner = findViewById<Button>(R.id.button_get_spinner)
+        val buttonSetSpinner = findViewById<Button>(R.id.button_set_spinner)
+        val spinnerStatic = findViewById<Spinner>(spinner_static)
 
         buttonToast.setOnClickListener(this)
         buttonSnack.setOnClickListener(this)
+        buttonGetSpinner.setOnClickListener(this)
+        buttonSetSpinner.setOnClickListener(this)
+
+        spinnerStatic.onItemSelectedListener = this
 
         loadSpinner()
 
@@ -47,11 +55,39 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
                 snack.show()
             }
+
+            R.id.button_get_spinner -> {
+                val selectedItem = findViewById<Spinner>(spinner_static).selectedItem
+                val selectedItemId = findViewById<Spinner>(spinner_static).selectedItemId
+                val selectedItemPosition = findViewById<Spinner>(spinner_static).selectedItemPosition
+
+                toast("Position: $selectedItemId: $selectedItem ")
+
+            }
+
+            R.id.button_set_spinner -> {
+                val spinnerStatic = findViewById<Spinner>(spinner_static)
+
+                spinnerStatic.setSelection(2)
+            }
         }
     }
 
+    override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        when (parent?.id) {
+            spinner_static -> {
+                val text = parent.getItemAtPosition(position)
+                toast(text.toString())
+            }
+        }
+    }
+
+    override fun onNothingSelected(p0: AdapterView<*>?) {
+        toast("Nothing")
+    }
+
     private fun toast(str: String) {
-        Toast.makeText(this, str, Toast.LENGTH_LONG).show()
+        Toast.makeText(this, str, Toast.LENGTH_SHORT).show()
     }
 
     private fun loadSpinner() {

@@ -36,4 +36,29 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp" />
 
+    <!--Botões obter e atribuir spinner-->
+    <LinearLayout
+        android:id="@+id/linear_button_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button_get_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:text="Obter spinner" />
+
+        <Button
+            android:id="@+id/button_set_spinner"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_weight="1"
+            android:text="Atribuir spinner" />
+
+    </LinearLayout>
+
 </LinearLayout>
